@@ -1,29 +1,12 @@
-import './style.css';
+console.log('Sahhh dude')
 
-console.log('test');
-
-const getData = async function getData(location) {
-  try {
-    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=S8PT6R6SWQ2SNK6EUXGTYJKGD&include=current,days&elements=datetime,temp,tempmin,tempmax,precipprob,windspeed,conditions,icon`);
-    const data = await response.json();
-    console.log(data);
-  } catch {
-    console.log('Did not work');
-  } 
-
+const fibs = function x(num) {
+  const arr = [];
+  if (n < 2) {
+    arr.push(n)
+    return arr;
+  }
+  for (let i = 0; i < num; i++) {
+    
+  }
 }
-
-const form = document.querySelector('#form');
-const input = document.querySelector('#search-bar');
-  form.addEventListener('click', (e) => {
-    if(e.target.matches('#submit')) {
-        getData(input.value)
-        input.value = '';
-        e.preventDefault();
-    }
-  })
-// getData('Elizabethtown');
-
-//?key=S8PT6R6SWQ2SNK6EUXGTYJKGD
-
-//&include+days&elements=temp,tempmin,tempmax,precipprob,windspeed,conditions,icon
