@@ -44,47 +44,65 @@ const fibsRec = function x(num) {
 }
 
 
-const best = [4, 3, 2, 1, 0];
 
-const newArr = [];
-let hold;
+
+
+function merge(left, right) {
+  console.log('merge started')
+  let sortedArr = [];
+
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      sortedArr.push(left.shift())
+    } else {
+      sortedArr.push(right.shift())    
+    }
+    
+  }
+  return [...sortedArr, ...left, ...right];
+}
 
 const mergeSort = function x(arr) {
 
-  if (arr.length > 1) {
-    let half = Math.ceil(arr.length / 2);
-    console.log(half)
-    let left = arr.slice(0, half);
-    let right = arr.slice(half)
-    console.log(arr)
-    console.log(left)
-    console.log(right)
-    if (half === 3) {
-      hold = left.splice(2);
-   
-    }
-    if (left.length === 1) {
-      if (left < right) {
-        let subSorted = [left[0], right[0]];
-        console.log(hold)
-        return subSorted
-      } else {
-        let subSorted = [right[0], left[0]];
-        console.log(hold)
-        return subSorted
-      }
-    }
-    const first = x(left) 
-    // const second = x(right);
-    console.log(first)
-    // console.log(second)
-    
+  if (arr.length <= 1) {
+  console.log('base case hit', arr)
+  return arr;
   }
-  if (arr.length === 1) {
-    console.log('lkajsdf')
 
-  }
+  console.log('Original array: ', arr);
+  let half = Math.ceil(arr.length / 2);
+  let left = arr.slice(0, half);
+  let right = arr.slice(half);
+
+  console.log('Left: ', left);
+  console.log('Right: ', right);
+
+  const sortedLeft = mergeSort(left);
+  console.log('LEFT HAS BEEN SORTED')
+  console.log('sorted left: ', sortedLeft)
+  const sortedRight = mergeSort(right);
+  console.log('RIGHT HAS BEEN SORTED')
+  console.log('sorted right: ', sortedRight);
+  const sortedArr = merge(sortedLeft, sortedRight);
+  console.log('LEFT AND RIGHT HAVE BEEN MERGED')
+  console.log('sorted array: ', sortedArr)
+  return sortedArr;
+
 }
 
-mergeSort(best)
+// console.log(mergeSort([25, 8, 7, 5, 4, 3, 2, -12]))
+
+const multiples = function x(n) {
+  if (n < 1) {
+    return 0;
+  }
+
+  if (n % 3 === 0 || n % 5 === 0) {
+   return n + multiples(n - 1);
+  }
+  return multiples(n - 1)
+  
+}
+
+console.log(multiples(1000))
 
